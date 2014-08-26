@@ -38,7 +38,7 @@ application 'zarafa-sabre' do
 
   before_restart do
     composer_project node['zarafa']['sabre']['root'] do
-        action :install
+      action :install
     end
 
     directory 'data_dir' do
@@ -53,7 +53,3 @@ application 'zarafa-sabre' do
     end
   end
 end
-
-
-
-
