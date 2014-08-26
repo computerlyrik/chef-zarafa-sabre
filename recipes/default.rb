@@ -23,6 +23,7 @@ end
 
 include_recipe 'zarafa'
 include_recipe 'composer'
+include_recipe 'application'
 
 application 'zarafa-sabre' do
   path node['zarafa']['sabre']['root']
