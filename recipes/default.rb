@@ -17,12 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe 'git'
-include_recipe 'zarafa'
-
 if node['zarafa']['timezone'].nil?
   Chef::Application.fatal!("Set node['zarafa']['timezone'] !")
 end
+
+include_recipe 'zarafa'
+include_recipe 'composer'
 
 application 'zarafa-sabre' do
   path node['zarafa']['sabre']['root']
@@ -35,18 +35,24 @@ application 'zarafa-sabre' do
 
   php
 
+  before_restart do
+    composer_project node['zarafa']['sabre']['root'] do
+        action :install
+    end
+
+    directory 'data_dir' do
+      path "#{node['zarafa']['sabre']['root']}/data"
+      mode 0750
+      recursive true
+    end
+
+    file 'debug_file' do
+      path "#{node['zarafa']['sabre']['root']}/debug.txt"
+      mode 0640
+    end
+  end
 end
 
 
-directory 'data_dir' do
-  path "#{node['zarafa']['sabre']['root']}/data"
-  mode 0750
-  recursive true
-end
-
-file 'debug_file' do
-  path "#{node['zarafa']['sabre']['root']}/debug.txt"
-  mode 0640
-end
 
 
