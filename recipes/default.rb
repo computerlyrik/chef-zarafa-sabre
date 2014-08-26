@@ -26,17 +26,25 @@ include_recipe 'composer'
 include_recipe 'application'
 
 application 'zarafa-sabre' do
-  path node['zarafa']['sabre']['root']
+  path node['zarafa']['sabre']['target']
   owner node['apache']['user']
   group node['apache']['group']
   repository 'git://github.com/bokxing-it/sabre-zarafa.git'
   revision node['zarafa']['sabre']['version'] || 'master'
 
-  mod_php_apache2
+  mod_php_apache2 do
+    webapp_template 'zarafa-sabre.conf.erb'
+  end
 
-  php
+  php do
+    local_settings_file 'config.inc.php'
+  end
 
   before_restart do
+    link node['zarafa']['sabre']['root'] do
+      to "#{node['zarafa']['sabre']['target']}/current"
+    end
+
     composer_project node['zarafa']['sabre']['root'] do
       action :install
     end
