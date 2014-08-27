@@ -22,5 +22,5 @@ default['zarafa']['sabre']['version'] = 'v0.22.2'
 default['zarafa']['sabre']['target'] = '/sabre-zarafa'
 default['zarafa']['sabre']['root'] = node['apache']['docroot_dir'] + node['zarafa']['sabre']['target']
 
-default['zarafa']['sabre']['vcard_version'] = 4
+default['zarafa']['sabre']['vcard_version'] = 3
 default['zarafa']['sabre']['readonly'] = true
