@@ -1,4 +1,4 @@
-name             'zarafa-sabredav'
+name             'zarafa-sabre'
 maintainer       'computerlyrik, Christian Fischer'
 maintainer_email 'chef-cookbooks@computerlyrik.de'
 license          'Apache 2.0'
