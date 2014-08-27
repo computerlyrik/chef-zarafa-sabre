@@ -30,7 +30,8 @@
 // http://code.google.com/p/sabredav/wiki/CardDAV#Get_clients_working
 define ('CARDDAV_ROOT_URI', '<%= node['zarafa']['sabre']['target'] %>');
 // Zarafa server location
-define ('ZARAFA_SERVER', 'file:///var/run/zarafa');
+define ('ZARAFA_SERVER', 'http://localhost:236/zarafa');
+#define ('ZARAFA_SERVER', 'file:///var/run/zarafa');
 // Authentication realm
 define ('SABRE_AUTH_REALM', 'Zarafa SabreDAV CardDav');
 // Product ID sent in vcards
@@ -63,7 +64,7 @@ define ('VCARD_CHARSET', '');
 // utf-8
 // 'ISO-8859-1//TRANSLIT');
 // If set to true all the write operations will be refused
-define ('READ_ONLY', node['zarafa']['sabre']['readonly']);
+define ('READ_ONLY', <%= node['zarafa']['sabre']['readonly'] %>);
 // Allow SabreDAV browser plugin
 define('SABRE_DAV_BROWSER_PLUGIN', true);
 // Some clients do not add a TYPE= attribute for telephone numbers
